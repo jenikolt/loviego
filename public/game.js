@@ -187,5 +187,5 @@ function startGame() {
 }
 
 app.ticker.add(() => {
-  // startGame();
+  startGame();
 });
