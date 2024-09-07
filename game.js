@@ -1,4 +1,3 @@
-// Инициализация PixiJS приложения
 const app = new PIXI.Application({
   width: 800,
   height: 600,
@@ -6,23 +5,21 @@ const app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-// Добавление контейнера для игрока
+
 const player = new PIXI.Graphics();
 player.beginFill(0xff0000);
-player.drawRect(0, 0, 50, 50); // Прямоугольник для игрока
+player.drawRect(0, 0, 50, 50);
 player.endFill();
 player.x = app.view.width / 2 - player.width / 2;
 player.y = app.view.height - player.height - 10;
 app.stage.addChild(player);
 
-// Добавление группы бутылок
 const bottles = [];
-const bottleSpeed = 3; // Скорость падения бутылок
+const bottleSpeed = 3; 
 
-// Инициализация жизней
 let lives = 3;
+let attempts = 3;
 
-// Текст для отображения жизней
 const livesText = new PIXI.Text(`Lives: ${lives}`, {
   fontSize: 24,
   fill: 0xffffff,
@@ -31,11 +28,18 @@ livesText.x = 10;
 livesText.y = 10;
 app.stage.addChild(livesText);
 
-// Функция создания бутылок
+const attemptsText = new PIXI.Text(`Attempts: ${attempts}`, {
+  fontSize: 24,
+  fill: 0xffffff,
+});
+attemptsText.x = 10;
+attemptsText.y = 40;
+app.stage.addChild(attemptsText);
+
 function createBottle() {
   const bottle = new PIXI.Graphics();
   bottle.beginFill(0x00ff00);
-  bottle.drawCircle(0, 0, 10); // Круг для бутылки
+  bottle.drawCircle(0, 0, 10);
   bottle.endFill();
   bottle.x = Math.random() * (app.view.width - 20) + 10;
   bottle.y = 0;
@@ -43,36 +47,58 @@ function createBottle() {
   bottles.push(bottle);
 }
 
-// Функция для обновления позиции бутылок
+
 function updateBottles() {
   for (let i = bottles.length - 1; i >= 0; i--) {
     bottles[i].y += bottleSpeed;
-    // Проверка на попадание в игрока
     if (
       bottles[i].y + bottles[i].height > player.y &&
       bottles[i].x > player.x &&
       bottles[i].x < player.x + player.width
     ) {
       app.stage.removeChild(bottles[i]);
-      bottles.splice(i, 1); // Удаление пойманной бутылки
+      bottles.splice(i, 1);
     } else if (bottles[i].y > app.view.height) {
       app.stage.removeChild(bottles[i]);
-      bottles.splice(i, 1); // Удаление бутылки, которая вышла за пределы экрана
-      loseLife(); // Потеря жизни, если бутылка вышла за пределы экрана
+      bottles.splice(i, 1); 
+      loseLife();
     }
   }
 }
 
-// Функция потери жизни
 function loseLife() {
   lives--;
   livesText.text = `Lives: ${lives}`;
   if (lives <= 0) {
-    endGame();
+    loseAttempt();
   }
 }
 
-// Обработка событий движения мыши
+function loseAttempt() {
+  attempts--;
+  attemptsText.text = `Attempts: ${attempts}`;
+  if (attempts <= 0) {
+    endGame();
+  } else {
+    restartGame();
+  }
+}
+
+function restartGame() {
+  lives = 3; // Сброс жизней до 3
+  livesText.text = `Lives: ${lives}`;
+  clearBottles();
+}
+
+
+function clearBottles() {
+  while (bottles.length > 0) {
+    const bottle = bottles.pop();
+    app.stage.removeChild(bottle);
+  }
+}
+
+
 app.view.addEventListener("mousemove", (event) => {
   const mouseX = event.clientX - app.view.getBoundingClientRect().left;
   player.x = Math.max(
@@ -81,9 +107,9 @@ app.view.addEventListener("mousemove", (event) => {
   );
 });
 
-// Функция завершения игры
+
 function endGame() {
-  app.ticker.stop(); // Останавливаем игровой цикл
+  app.ticker.stop();
   const gameOverText = new PIXI.Text("Game Over", {
     fontSize: 48,
     fill: 0xff0000,
@@ -93,10 +119,8 @@ function endGame() {
   app.stage.addChild(gameOverText);
 }
 
-// Основной игровой цикл
 app.ticker.add(() => {
   if (Math.random() < 0.02) {
-    // Вероятность появления новой бутылки
     createBottle();
   }
   updateBottles();
