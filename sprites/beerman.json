@@ -1,0 +1,84 @@
+{"frames": {
+
+"1.png":
+{
+	"frame": {"x":1,"y":1,"w":420,"h":420},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":420},
+	"sourceSize": {"w":420,"h":420}
+},
+"2.png":
+{
+	"frame": {"x":423,"y":1,"w":420,"h":420},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":420},
+	"sourceSize": {"w":420,"h":420}
+},
+"3.png":
+{
+	"frame": {"x":845,"y":1,"w":420,"h":420},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":420},
+	"sourceSize": {"w":420,"h":420}
+},
+"4.png":
+{
+	"frame": {"x":1,"y":423,"w":420,"h":420},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":420},
+	"sourceSize": {"w":420,"h":420}
+},
+"5.png":
+{
+	"frame": {"x":1,"y":845,"w":420,"h":420},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":420},
+	"sourceSize": {"w":420,"h":420}
+},
+"6.png":
+{
+	"frame": {"x":423,"y":423,"w":420,"h":420},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":420},
+	"sourceSize": {"w":420,"h":420}
+},
+"7.png":
+{
+	"frame": {"x":845,"y":423,"w":420,"h":420},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":420},
+	"sourceSize": {"w":420,"h":420}
+},
+"8.png":
+{
+	"frame": {"x":423,"y":845,"w":420,"h":420},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":420},
+	"sourceSize": {"w":420,"h":420}
+},
+"9.png":
+{
+	"frame": {"x":845,"y":845,"w":420,"h":420},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":420,"h":420},
+	"sourceSize": {"w":420,"h":420}
+}},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.1",
+	"image": "beerman.png",
+	"format": "RGBA8888",
+	"size": {"w":1266,"h":1266},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:ad64fbc6171586f3b98908bfb98f14a9:75ce119d772ddcc871b57a255eb534ea:083b74182a07ea783d56cd533cfc7ba1$"
+}
+}

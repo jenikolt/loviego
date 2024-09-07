@@ -1,10 +1,43 @@
+const { Application, Assets, AnimatedSprite, Texture } = PIXI; 
 // Инициализация PixiJS приложения
-const app = new PIXI.Application({
+(async () => {
+  const app = new PIXI.Application({
   width: 800,
   height: 600,
   backgroundColor: 0x1099bb,
 });
 document.body.appendChild(app.view);
+
+//==================
+await Assets.load('./sprites/beerman.json');
+
+    // Create an array of textures from the sprite sheet
+    const frames = [];
+
+    for (let i = 0; i < 10; i++)
+    {
+        const val = i < 10 ? `${i}` : i;
+
+        // Magically works since the spritesheet was loaded with the pixi loader
+        frames.push(Texture.from(`${val}.png`));
+    }
+
+    // Create an AnimatedSprite (brings back memories from the days of Flash, right ?)
+    const anim = new AnimatedSprite(frames);
+
+    /*
+     * An AnimatedSprite inherits all the properties of a PIXI sprite
+     * so you can change its position, its anchor, mask it, etc
+     */
+    anim.x = app.screen.width / 2;
+    anim.y = app.screen.height / 2;
+    anim.anchor.set(0.5);
+    anim.animationSpeed = 0.1;
+    anim.play();
+
+    app.stage.addChild(anim);
+
+//==================
 
 // Добавление контейнера для игрока
 const player = new PIXI.Graphics();
@@ -100,4 +133,4 @@ app.ticker.add(() => {
     createBottle();
   }
   updateBottles();
-});
+})})();
